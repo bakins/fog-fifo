@@ -1,13 +1,13 @@
 require 'fog/core/collection'
-require 'fog/fifo/models/compute/flavor'
+require 'fog/fifo/models/compute/package'
 
 module Fog
   module Compute
 
     class Fifo
-      class Flavors < Fog::Collection
+      class Packages < Fog::Collection
 
-        model Fog::Compute::Fifo::Flavor
+        model Fog::Compute::Fifo::Package
 
         def all
           service.list_packages().body.map{|id| get(id) }

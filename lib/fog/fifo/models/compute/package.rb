@@ -1,7 +1,7 @@
 module Fog
   module Compute
     class Fifo
-      class Flavor < Fog::Model
+      class Package < Fog::Model
 
         identity :uuid
 

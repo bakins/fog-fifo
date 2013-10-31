@@ -14,29 +14,17 @@ module Fog
       model_path 'fog/fifo/models/compute'
       request_path 'fog/fifo/requests/compute'
 
-      # Keys
-      if false
-      collection :keys
-      model :key
-
-      request :list_keys
-      request :get_key
-      request :create_key
-      request :delete_key
-      end
-
-      # Images
-      collection :images
-      model :image
+      # Datasets
+      collection :datasets
+      model :dataset
       request :list_datasets
       request :get_dataset
 
-      # Flavors
-      collection :flavors
-      model :flavor
+      # packages
+      collection :packages
+      model :package
       request :list_packages
       request :get_package
-
 
       # Servers
       collection :servers
@@ -50,19 +38,6 @@ module Fog
       request :reboot_machine
       request :resize_machine
       request :delete_machine
-
-      # Snapshots
-      collection :snapshots
-      model :snapshot
-      request :create_machine_snapshot
-      request :start_machine_from_snapshot
-      request :list_machine_snapshots
-      request :get_machine_snapshot
-      request :delete_machine_snapshot
-      request :update_machine_metadata
-      request :get_machine_metadata
-      request :delete_machine_metadata
-      request :delete_all_machine_metadata
       end
 
       # Networks

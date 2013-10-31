@@ -1,13 +1,13 @@
 require 'fog/core/collection'
-require 'fog/fifo/models/compute/image'
+require 'fog/fifo/models/compute/dataset'
 
 module Fog
   module Compute
 
     class Fifo
-      class Images < Fog::Collection
+      class Datasets < Fog::Collection
 
-        model Fog::Compute::Fifo::Image
+        model Fog::Compute::Fifo::Datasets
 
         def all
           service.list_datasets().body.map{|id| get(id) }

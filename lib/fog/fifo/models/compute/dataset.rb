@@ -1,7 +1,7 @@
 module Fog
   module Compute
     class Fifo
-      class Image < Fog::Model
+      class Dataset < Fog::Model
 
         identity :dataset
 
