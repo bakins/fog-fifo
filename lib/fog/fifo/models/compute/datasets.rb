@@ -10,7 +10,7 @@ module Fog
         model Fog::Compute::Fifo::Datasets
 
         def all
-          service.list_datasets().body.map{|id| get(id) }
+          service.list_datasets().body
         end
 
         def get(id)

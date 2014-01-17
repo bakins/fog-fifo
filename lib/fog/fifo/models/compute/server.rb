@@ -9,11 +9,18 @@ module Fog
         attribute :state
         attribute :hypervisor
         attribute :config
+        attribute :package
+        attribute :network
 
         def dataset
           requires :uuid
-          @dataset ||= service.images.get(config["dataset"])
+          config["dataset"]
         end
+
+        #def package
+        #  requires :uuid
+        #  config["package"]
+        #end
 
         def ips
           requires :uuid
@@ -23,6 +30,35 @@ module Fog
         def memory
           requires :uuid
           config["ram"]
+        end
+
+        def reboot
+          requires :uuid
+          service.reboot_vm(uuid)
+          true
+        end
+
+        def stopped?
+          requires :uuid
+          self.state == 'stopped'
+        end
+
+        def stop
+          requires :uuid
+          service.stop_vm(uuid)
+          self.wait_for { stopped? }
+          true
+        end
+
+        def ready?
+          self.state == 'running'
+        end
+
+        def start
+          requires :uuid
+          service.start_vm(uuid)
+          self.wait_for { ready? }
+          true
         end
 
       end

@@ -31,11 +31,15 @@ module Fog
       model :server
       request :list_vms
       request :get_vm
+      request :reboot_vm
+      request :stop_vm
+      request :start_vm
+      request :create_vm
+
       if false
       request :create_machine
       request :start_machine
       request :stop_machine
-      request :reboot_machine
       request :resize_machine
       request :delete_machine
       end
@@ -114,7 +118,7 @@ module Fog
         def authenticate
           response = @connection.request({
                                            :expects => [200, 204, 303],
-                                           :host    => @fifo_uri.host,
+                                           #:host    => @fifo_uri.host,
                                            :method  => 'POST',
                                            :path    => create_path('sessions'),
                                            :headers => {
