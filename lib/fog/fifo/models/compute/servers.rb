@@ -13,9 +13,10 @@ module Fog
         end
 
         def create(params = {})
-          data = service.create_vm(params).body
-          server = new(data)
-          server
+          resp = service.create_vm(params)
+
+	  #This will retrn a 303 with location = new vm url, so just get it.
+	  get(resp.headers['location'].split('/').last)
         end
 
         def bootstrap(new_attributes = {})

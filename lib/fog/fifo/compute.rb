@@ -35,6 +35,7 @@ module Fog
       request :stop_vm
       request :start_vm
       request :create_vm
+      request :delete_vm
 
       if false
       request :create_machine
@@ -147,12 +148,12 @@ module Fog
           end
 
           opts[:path] = create_path(opts[:path])
+	  
           response = @connection.request(opts)
           if response.headers["Content-Type"] == "application/json"
             response.body = json_decode(response.body)
           end
 
-          #pp response
           response
         rescue Excon::Errors::HTTPStatusError => e
           raise_if_error!(e.request, e.response)

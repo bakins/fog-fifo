@@ -7,10 +7,10 @@ module Fog
     class Fifo
       class Datasets < Fog::Collection
 
-        model Fog::Compute::Fifo::Datasets
+        model Fog::Compute::Fifo::Dataset
 
         def all
-          service.list_datasets().body
+          service.list_datasets().body.map{|id| get(id)}
         end
 
         def get(id)
