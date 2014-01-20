@@ -3,11 +3,10 @@ module Fog
     class Fifo
 
       class Mock
-        def start_vm(uuid)
+        def delete_vm(uuid)
           if vm = self.data[:vms][uuid]
             res = Excon::Response.new
             res.status = 200
-            res.body = vm
             res
           else
             raise Excon::Errors::NotFound, "Not Found"
@@ -16,12 +15,11 @@ module Fog
       end
 
       class Real
-        def create_vm(params)
+        def delete_vm(id)
           request(
-                  :method => "POST",
-                  :path => "vms",
-                  :expects => [303],
-                  :body => params
+                  :method => "DELETE",
+                  :path => "vms/#{id}",
+                  :expects => [200]
                   )
         end
       end

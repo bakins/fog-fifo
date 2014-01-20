@@ -11,6 +11,7 @@ module Fog
         attribute :config
         attribute :package
         attribute :network
+	attribute :log
 
         def dataset
           requires :uuid
@@ -60,6 +61,12 @@ module Fog
           self.wait_for { ready? }
           true
         end
+
+	def delete
+	  requires :uuid
+	  service.delete_vm(uuid)
+	  true
+	end
 
       end
     end
