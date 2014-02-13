@@ -150,7 +150,7 @@ module Fog
           opts[:path] = create_path(opts[:path])
 	  
           response = @connection.request(opts)
-          if response.headers["Content-Type"] == "application/json"
+          if response.headers["Content-Type"] == "application/json" and response.body.length > 0
             response.body = json_decode(response.body)
           end
 
